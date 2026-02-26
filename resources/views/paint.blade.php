@@ -708,13 +708,6 @@
             margin-bottom: 1rem;
         }
 
-        #finalOverlay {
-            position: fixed !important;
-            inset: 0 !important;
-            z-index: 7000 !important;
-            background: rgba(0, 0, 0, .55) !important;
-            backdrop-filter: blur(3px);
-        }
 
         #finalOverlay .modal {
             position: fixed !important;
@@ -742,57 +735,7 @@
             padding: 12px 20px;
         }
 
-        #finalOverlay .modal-body {
-            position: relative;
-            z-index: 1;
-            margin: 0 auto;
 
-            width: min(45vw, 640px);
-            max-height: min(70vh, 680px);
-            transform: translateY(20vh);
-
-            overflow-y: auto;
-            padding: 2.8rem 3.2rem;
-
-            border-radius: 16px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: #111;
-
-            backdrop-filter: blur(2px);
-        }
-
-
-        #finalOverlay .modal-body :is(.prose, .container, .mx-auto, [class*="max-w"], [class*="container"]) {
-            max-width: 100% !important;
-            width: 100% !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-            padding-left: 0 !important;
-            padding-right: 0 !important;
-        }
-
-        #finalOverlay .modal-footer {
-            position: sticky;
-            bottom: 0;
-            z-index: 2;
-            backdrop-filter: blur(2px);
-            padding: 10px 16px;
-            display: flex;
-            justify-content: flex-end;
-            gap: .5rem;
-        }
-
-        #finalOverlay .btn {
-            padding: .6rem 1.2rem;
-            font-weight: 600;
-            border: 1px solid #111;
-            border-radius: 9999px;
-            background: #fff;
-            color: #111;
-        }
 
         #finalOverlay .btn:active {
             background: #000;
@@ -801,14 +744,6 @@
 
         body.modal-open {
             overflow: hidden !important;
-        }
-
-
-        #finalOverlay .modal {
-            position: relative;
-            z-index: 1;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(2px);
         }
 
 
@@ -835,43 +770,10 @@
             overflow: hidden;
         }
 
-
-        #finalOverlay .modal-body {
-            flex: 1;
-            overflow-y: auto;
-            padding: 80px clamp(5vw, 8vw, 120px);
-
-            color: #111;
-            line-height: 1.7;
-            font-size: 1.05rem;
-            background: #F5F1FA;
-
-            border-radius: 12px;
-            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-        }
-
-
-        #finalOverlay .modal-header,
-        #finalOverlay .modal-footer {
+        #finalOverlay .modal-header
+        {
             background: transparent;
             border: none;
-        }
-
-        #finalOverlay .modal-footer {
-            position: sticky;
-            bottom: 0;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        #finalOverlay .btn {
-            padding: .6rem 1.2rem;
-            font-weight: 600;
-            border: 1px solid #34113F;
-            border-radius: 9999px;
-            background: #D9CCE7;
-            color: #111;
         }
 
         #finalOverlay .btn:active {
@@ -880,12 +782,13 @@
         }
 
 
+
         #finalOverlay {
-            position: fixed;
-            inset: 0;
-            background: #34113F;
+            position: fixed !important;
+            inset: 0 !important;
+            z-index: 7000 !important;
+            background: rgba(0, 0, 0, .55) !important;
             backdrop-filter: blur(3px);
-            z-index: 10000;
             display: flex;
             align-items: stretch;
             justify-content: stretch;
@@ -908,12 +811,6 @@
         }
 
         #finalOverlay .modal-header,
-        #finalOverlay .modal-body,
-        #finalOverlay .modal-footer {
-            position: relative;
-            z-index: 1;
-            color: #34113F;
-        }
 
         #finalOverlay .modal-header {
             padding: 1rem 2rem;
@@ -942,14 +839,17 @@
             transform: translateY(19vh);
         }
 
-        #finalOverlay .modal-footer {
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            padding: 1rem 2rem;
-            background: #E5E3F7;
-            backdrop-filter: blur(4px);
-            border-top-left-radius: 12px;
+        #finalOverlay .modal-footer{
+        position: fixed;
+        right: 2rem;
+        bottom: 2rem;
+        z-index: 3;
+
+        background: transparent;
+        border: none;
+        padding: 0;
+        display: flex;
+        justify-content: flex-end;
         }
 
         #finalOverlay .btn {
@@ -965,6 +865,15 @@
         #finalOverlay .btn:active {
             background: #34113F;
             color: #D9CCE7;
+        }
+
+        #finalOverlay .modal-frame{
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            z-index: 0;
         }
     </style>
 </head>
@@ -1143,8 +1052,8 @@
 
         <div id="finalOverlay" class="overlay hidden">
             <div class="modal-full">
-                <img src="{{ asset('img/tocador2.png') }}?v=3" alt="" class="modal-frame">
-                <section class="modal-body">
+                <img src="{{ asset('img/tocador2.png') }}"alt="" class="modal-frame">
+                    <section class="modal-body">
                     <div class="fc-reset">
                         <p class="modal-desc" style="text-align:center;"> Gracias por verte en este espejo,</p>
                         <p class="modal-desc">Aunque la belleza no sea lo más importante para ti, está en todas partes:
@@ -1165,6 +1074,7 @@
                             viene con ello, mírate al espejo y pregúntale: “Espejito, espejito, ¿de dónde viene este
                             enredo?”</p>
                         <p class="modal-desc">Tómate un momento, cuando quieras, continúa. </p>
+
                     </div>
                 </section>
 
@@ -1173,7 +1083,6 @@
                 </footer>
             </div>
         </div>
-
         <div
         id="stage"
         class="stage"

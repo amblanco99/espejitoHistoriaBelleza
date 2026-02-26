@@ -28,7 +28,12 @@
             background: #f8fafc;
             color: #0f172a
         }
-
+        #placeholder.glass-placeholder{
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        }
         .bar {
             position: sticky;
             top: 0;
@@ -1222,7 +1227,8 @@
             </div>
             </div>
         </div>
-        <img id="frame" src="tocador.png" alt="Marco" />
+        <img id="frame" src="{{ asset('/tocador.png') }}?" alt="Marco">
+
         </div>
         <script>
             (function () {

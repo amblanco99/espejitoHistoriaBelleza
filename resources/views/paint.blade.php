@@ -1051,8 +1051,8 @@
 
 
         <div id="finalOverlay" class="overlay hidden">
-            <div class="modal-full">
-                <img src="{{ asset('img/tocador2.png') }}"alt="" class="modal-frame">
+                       <div class="modal-full">
+                <img src="{{ asset('img/tocador2.png') }}?v=3" class="modal-frame">
                     <section class="modal-body">
                     <div class="fc-reset">
                         <p class="modal-desc" style="text-align:center;"> Gracias por verte en este espejo,</p>

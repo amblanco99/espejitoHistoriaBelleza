@@ -1146,7 +1146,7 @@
                 <img src="{{ asset('img/tocador2.png') }}?v=3" alt="" class="modal-frame">
                 <section class="modal-body">
                     <div class="fc-reset">
-                        <p class="modal-desc" text-align:center;> Gracias por verte en este espejo,</p>
+                        <p class="modal-desc" style="text-align:center;"> Gracias por verte en este espejo,</p>
                         <p class="modal-desc">Aunque la belleza no sea lo más importante para ti, está en todas partes:
                             en tu elección de ropa para la entrevista de trabajo, en arreglarse para una cita romántica
                             o para verse con las amigas. Piensa en las historias de las mujeres que leíste y en los

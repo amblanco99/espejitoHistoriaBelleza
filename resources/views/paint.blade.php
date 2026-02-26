@@ -4,7 +4,6 @@
 @extends('layouts.app') @section('title')
 {{ $tituloPagina ?? ($nombre ?? "Entrevista") }}
 @endsection @section('content')
-{{-- Barra fija de "Volver" SIEMPRE por encima del header global --}}
 <nav
     class="fixed
      top-0 left-0 w-full h-16 md:h-20 flex items-center px-4 z-[9999] bg-[#34113F]/80 backdrop-blur pointer-events-auto">
@@ -58,7 +57,7 @@
             z-index: 1;
         }
 
-        /* Distribución */
+
         .subbar .left {
             display: flex;
             align-items: center;
@@ -95,37 +94,34 @@
             max-width: min(90vw, 900px);
             margin: 0 auto;
         }
-        /* Marco */
-      #stage {
-  position: relative;
-  width: 100%;
-   aspect-ratio: 2654 / 2127; /* EXACTO al PNG */
-  /*aspect-ratio: 5232 / 4193; /* EXACTO al PNG */
-}
 
-#frame {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;   /* respeta proporción */
-  pointer-events: none;
-  z-index: 15;
-}
+        #stage {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2654 / 2127;
+        }
+
+        #frame {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            pointer-events: none;
+            z-index: 15;
+        }
 
 
-        /* Selfie */
 
         #bg {
-  box-sizing: border-box;
-  padding-left: 24px;
-  padding-right: 24px;
-  object-fit: contain;
-  object-position: center;
-}
+            box-sizing: border-box;
+            padding-left: 24px;
+            padding-right: 24px;
+            object-fit: contain;
+            object-position: center;
+        }
 
 
-        /* Vidrio */
         #glass {
             position: absolute;
             top: 0;
@@ -136,7 +132,6 @@
             z-index: 5;
         }
 
-        /* Canvas */
         #cv {
             position: absolute;
             top: 0;
@@ -148,7 +143,6 @@
             touch-action: none;
         }
 
-        /* === Botones generales === */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -199,7 +193,6 @@
             cursor: not-allowed
         }
 
-        /* Clic → negro */
         .btn:active,
         .chip:active {
             background: #34113F;
@@ -207,13 +200,11 @@
             transform: translateY(1px);
         }
 
-        /* Estado activo (si el JS aplica .active) */
         .btn.active,
         .chip.active {
             background: #D9CCE7;
         }
 
-        /* === Botón “Cargar imagen” === */
         .btn--upload {
             font-size: 1.05rem;
             padding: 0.7rem 1.4rem;
@@ -221,7 +212,6 @@
             border-color: #d7a9bb;
             box-shadow: inset 0 -3px rgba(0, 0, 0, 0.07);
             animation: pulseUpload 2.2s ease-in-out 0s 20;
-            /* ← solo 3 veces */
         }
 
         .btn--upload:hover {
@@ -232,10 +222,8 @@
             background: #000;
             color: #fff;
             animation: none;
-            /* detiene el pulso al hacer clic */
         }
 
-        /* Animación de pulso suave */
         @keyframes pulseUpload {
             0% {
                 transform: scale(1);
@@ -253,12 +241,10 @@
             }
         }
 
-        /* Oculta el input real */
         #file {
             display: none;
         }
 
-        /* Asegura que “chip” herede el mismo estilo */
         .chip {
             all: unset;
             display: inline-flex;
@@ -274,8 +260,6 @@
             box-shadow: inset 0 -2px rgba(0, 0, 0, 0.06);
             transition: transform 0.05s ease, background 0.15s ease, color 0.15s ease;
         }
-
-
 
         .btn-primary {
             border-color: #d4f2d2;
@@ -334,7 +318,6 @@
             width: 160px
         }
 
-        /* Tarjeta flotante (oculta hasta hover inicial) */
         .q-fly {
             background: #fff;
             border: 1px solid #e2e8f0;
@@ -345,12 +328,9 @@
             padding: 12px;
             color: #0f172a;
             height: 100%;
-            /* ocupa todo el alto disponible */
             display: flex;
             flex-direction: column;
             gap: 10px;
-
-            /* estado inicial (oculta/afuera) */
             transform: translateX(-100px) scale(.92);
             opacity: 0;
             filter: blur(4px);
@@ -373,7 +353,6 @@
             overflow: auto;
         }
 
-        /* Animaciones helper */
         @keyframes flyIn {
             0% {
                 transform: translateX(-100px) scale(.92);
@@ -402,13 +381,11 @@
             }
         }
 
-        /* 3) Capas visibles: placeholder por encima del marco */
         #placeholder {
             z-index: 30 !important;
         }
 
 
-        /* Fondo oscuro bloqueante */
         .warn-overlay {
             position: fixed;
             inset: 0;
@@ -418,10 +395,8 @@
             align-items: center;
             justify-content: center;
             z-index: 2000;
-            /* encima de todo */
         }
 
-        /* Tarjeta central del aviso */
         .warn-modal {
             background: #fff;
             border: 2px solid #dc2626;
@@ -432,31 +407,25 @@
             text-align: center;
         }
 
-        /* Oculto por defecto */
         .hidden {
             display: none !important;
         }
 
 
-        /* Utilidad para ocultar */
         .hidden {
             display: none !important;
         }
 
-        /* Overlay bloqueante */
         .warn-overlay {
             position: fixed;
             inset: 0;
             background: rgba(15, 23, 42, .55);
-            /* fondo oscuro */
             backdrop-filter: blur(2px);
             display: grid;
             place-items: center;
             z-index: 9999;
-            /* por encima de todo */
         }
 
-        /* Caja del modal */
         .warn-modal {
             width: min(560px, 92vw);
             background: #fff;
@@ -467,6 +436,7 @@
                 0 4px 12px rgba(2, 6, 23, .06);
             padding: 20px;
         }
+
         .q-fly {
             background: #fff;
             border: 1px solid #e2e8f0;
@@ -497,7 +467,6 @@
             background: #ecfdf5;
         }
 
-        /* --- Reflexión al final del lienzo --- */
         .reflection-section {
             margin-top: 40px;
             background: #E5E3F7;
@@ -540,7 +509,6 @@
             margin-top: 10px;
         }
 
-        /* --- Reflexión final --- */
         .hidden {
             display: none !important;
         }
@@ -587,17 +555,14 @@
             margin-top: 10px;
         }
 
-        /* Contenedor que agrupa botón y tooltip */
         .tooltip-wrap {
             position: relative;
             display: inline-block;
         }
 
-        /* Tooltip visual */
         .tooltip-text {
             position: absolute;
             bottom: 125%;
-            /* justo encima del botón */
             left: 50%;
             transform: translateX(-50%);
             background: rgba(15, 23, 42, 0.95);
@@ -617,7 +582,6 @@
             z-index: 999;
         }
 
-        /* Triángulo del tooltip */
         .tooltip-text::after {
             content: "";
             position: absolute;
@@ -629,30 +593,25 @@
             border-color: rgba(15, 23, 42, 0.95) transparent transparent transparent;
         }
 
-        /* Mostrar tooltip al pasar el mouse */
         .tooltip-wrap:hover .tooltip-text {
             opacity: 1;
             transform: translate(-50%, -4px);
         }
 
-        /* En pantallas táctiles mantiene el tooltip visible al tocar */
         @media (hover: none) {
             .tooltip-text {
                 display: none;
             }
         }
 
-        /* Tarjeta de instrucciones (delgada, fuera de la subbar) */
         .instructions-card {
             max-width: 1024px;
             margin: .4rem auto 1rem;
             border-radius: 12px;
             background: #D9CCE7;
-            /* gris MUY leve y semitransparente */
             overflow: hidden;
         }
 
-        /* Quita el triángulo por defecto y estiliza el header */
         .instructions-card>summary {
             list-style: none;
             display: flex;
@@ -688,7 +647,6 @@
             color: #6b7280;
         }
 
-        /* Contenido */
         .instructions-content {
             padding: .75rem .95rem 1rem;
             font-size: .95rem;
@@ -697,7 +655,6 @@
 
         }
 
-        /* (Opcional) Animación de abrir/cerrar suave */
         .instructions-card .instructions-content {
             max-height: 600px;
             opacity: 1;
@@ -746,9 +703,6 @@
             margin-bottom: 1rem;
         }
 
-
-        /* Fondo Reflexión Fullscreen real: ancho completo */
-
         #finalOverlay {
             position: fixed !important;
             inset: 0 !important;
@@ -757,7 +711,6 @@
             backdrop-filter: blur(3px);
         }
 
-        /* La modal se pega a los 4 bordes del viewport */
         #finalOverlay .modal {
             position: fixed !important;
             left: 0 !important;
@@ -775,7 +728,6 @@
             box-shadow: none !important;
         }
 
-        /* Header fijo arriba (opcional) */
         #finalOverlay .modal-header {
             position: sticky;
             top: 0;
@@ -785,7 +737,6 @@
             padding: 12px 20px;
         }
 
-        /* Cuerpo con scroll vertical y sin límites de ancho */
         #finalOverlay .modal-body {
             position: relative;
             z-index: 1;
@@ -794,7 +745,6 @@
             width: min(45vw, 640px);
             max-height: min(70vh, 680px);
             transform: translateY(20vh);
-            /* baja todo el bloque unos 3% del alto de pantalla */
 
             overflow-y: auto;
             padding: 2.8rem 3.2rem;
@@ -810,7 +760,6 @@
         }
 
 
-        /* Forzar que nada adentro se auto-estreche (prose, container, max-w-*, etc.) */
         #finalOverlay .modal-body :is(.prose, .container, .mx-auto, [class*="max-w"], [class*="container"]) {
             max-width: 100% !important;
             width: 100% !important;
@@ -820,7 +769,6 @@
             padding-right: 0 !important;
         }
 
-        /* Footer fijo abajo con botón visible */
         #finalOverlay .modal-footer {
             position: sticky;
             bottom: 0;
@@ -832,7 +780,6 @@
             gap: .5rem;
         }
 
-        /* Botón */
         #finalOverlay .btn {
             padding: .6rem 1.2rem;
             font-weight: 600;
@@ -847,7 +794,6 @@
             color: #fff;
         }
 
-        /* Bloquea el scroll del fondo cuando está abierto */
         body.modal-open {
             overflow: hidden !important;
         }
@@ -868,7 +814,6 @@
             backdrop-filter: blur(2px);
         }
 
-        /* imagen fondo reflexion*/
         #finalOverlay .modal {
             position: fixed;
             inset: 0;
@@ -878,29 +823,29 @@
             background-image: href="{{ secure_url('/img/#tocador2.png') }}";
             background-repeat: no-repeat;
             background-size: cover;
-            /* se estira al tamaño completo */
+
             background-position: center;
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
 
-        /* Cuerpo scrollable con espacio para el marco */
+
         #finalOverlay .modal-body {
             flex: 1;
             overflow-y: auto;
             padding: 80px clamp(5vw, 8vw, 120px);
-            /* agrega margen para no tapar texto */
+
             color: #111;
             line-height: 1.7;
             font-size: 1.05rem;
             background: #F5F1FA;
-            /* leve velo para legibilidad */
+
             border-radius: 12px;
             box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
         }
 
-        /* Header y footer ajustados */
+
         #finalOverlay .modal-header,
         #finalOverlay .modal-footer {
             background: transparent;
@@ -929,8 +874,7 @@
             color: #D9CCE7;
         }
 
-        /* Capa oscura */
-        /* === POP-UP FINAL CON MARCO A PANTALLA COMPLETA === */
+
         #finalOverlay {
             position: fixed;
             inset: 0;
@@ -946,7 +890,7 @@
             display: none;
         }
 
-        /* Contenedor general: grid header-body-footer */
+
         #finalOverlay .modal-full {
             position: fixed;
             inset: 0;
@@ -958,10 +902,6 @@
             overflow: hidden;
         }
 
-        /* --- Imagen del marco --- */
-
-
-        /* --- Contenido encima del marco --- */
         #finalOverlay .modal-header,
         #finalOverlay .modal-body,
         #finalOverlay .modal-footer {
@@ -970,7 +910,6 @@
             color: #34113F;
         }
 
-        /* Header arriba */
         #finalOverlay .modal-header {
             padding: 1rem 2rem;
         }
@@ -982,26 +921,22 @@
             color: #34113F;
         }
 
-        /* Body con scroll */
         #finalOverlay .modal-body {
             position: relative;
             z-index: 1;
             margin: 0 auto;
             width: 56vw;
-            /* texto dentro del marco */
+
             max-height: 65vh;
-            /* alto controlado */
+
             overflow: auto;
             padding: 2rem 3rem;
             background: #E5E3F7;
             border-radius: 12px;
             box-shadow: 0 6px 18px #34113F;
             transform: translateY(19vh);
-            /* baja todo el bloque unos 3% del alto de pantalla */
-
         }
 
-        /* Footer con el botón fijo abajo */
         #finalOverlay .modal-footer {
             position: fixed;
             bottom: 0;
@@ -1012,7 +947,6 @@
             border-top-left-radius: 12px;
         }
 
-        /* Botón */
         #finalOverlay .btn {
             padding: .6rem 1.2rem;
             font-weight: 600;
@@ -1031,13 +965,10 @@
 </head>
 
 <body>
-
-    <!-- Barra superior -->
     <div class="bar">
-        <!-- Bloque izquierdo -->
         <strong style="margin:0 auto;" class="text-3xl font-bold mb-12">Tocador</strong>
     </div>
-    <!-- Instrucciones (fuera de la barra) -->
+
     <details id="inst" class="instructions-card" open>
         <summary>
             <span class="marker"></span>
@@ -1063,7 +994,6 @@
                 pregunta indicando qué parte cambiarías. </p>
         </div>
     </details>
-    <!-- Sub-barra de herramientas -->
     <div class="subbar">
 
         <div class="left">
@@ -1098,13 +1028,8 @@
 
 
 
-
-
-    <!-- Lienzo -->
     <div class="stage-box" style="display:flex; align-items:stretch; gap:20px;">
-        <!-- Columna izquierda: TARJETA lateral (misma altura que el lienzo) -->
         <aside style="flex:0 0 300px;">
-            <!-- Tu tarjeta de preguntas (qFly) arranca oculta -->
             <div id="qFly" class="q-fly hidden">
                 <div class=" q-head text-xl" style="color:#34113F;">
                     <strong>Pregunta</strong>
@@ -1129,10 +1054,6 @@
 
         </aside>
 
-        <!-- Columna derecha: LIENZO / STAGE (lo que ya tienes) -->
-
-
-        <!-- ==== AVISO BLOQUEANTE (modal con overlay) ==== -->
         <div id="warnOverlay" aria-modal="true" role="dialog" style="
        position: fixed;
        inset: 0;
@@ -1181,7 +1102,6 @@
                 </p>
 
                 <div style="display:flex; justify-content:center; gap:1.2rem;">
-                    <!-- Botón Salón de espejos -->
                     <button id="btnWarnBack" class="btn" style="
           flex:1;
           background:#D9CCE7;
@@ -1196,8 +1116,6 @@
         ">
                         ← Salón de espejos
                     </button>
-
-                    <!-- Botón Tocador -->
                     <button id="btnWarnContinue" class="btn btn-primary" style="
           flex:1;
           background:#34113F;
@@ -1220,11 +1138,7 @@
 
         <div id="finalOverlay" class="overlay hidden">
             <div class="modal-full">
-                <!-- Marco imagen: capa de fondo que NO bloquea clics/scroll -->
                 <img src="{{ asset('img/tocador2.png') }}?v=3" alt="" class="modal-frame">
-
-                <!-- Contenido -->
-
                 <section class="modal-body">
                     <div class="fc-reset">
                         <p class="modal-desc" text-align:center;> Gracias por verte en este espejo,</p>
@@ -1246,7 +1160,6 @@
                             viene con ello, mírate al espejo y pregúntale: “Espejito, espejito, ¿de dónde viene este
                             enredo?”</p>
                         <p class="modal-desc">Tómate un momento, cuando quieras, continúa. </p>
-
                     </div>
                 </section>
 
@@ -1256,14 +1169,10 @@
             </div>
         </div>
 
-        <!-- ============ ESCENARIO ============ -->
         <div id="stage" class="stage" style="flex:1 1 auto; min-width:0; position:relative; overflow:hidden;">
 
-            <!-- Imagen de fondo (selfie u otra). Mantiene proporción -->
             <img id="bg" alt="" style="position:absolute; inset:0; width:100%; height:100%;
                     object-fit:contain; z-index:5; user-select:none; -webkit-user-drag:none;">
-
-            <!-- Región del vidrio (misma abertura del marco) -->
             <div id="glass" class="glass" style="
         position:absolute;
         top:14.5%;
@@ -1272,12 +1181,8 @@
         bottom:14%;
         overflow:hidden;
      ">
-
-                <!-- Canvas de pintura DENTRO del vidrio -->
                 <canvas id="cv" style="position:absolute; inset:0; width:100%; height:100%;
                                 z-index:10; pointer-events:auto; touch-action:none; display:block;"></canvas>
-
-                <!-- Placeholder centrado dentro del vidrio -->
                 <div id="placeholder" class="glass-placeholder">
                     <div style="text-align:left; width:100%; max-width:300px;">
                         <div style="font-size:1.1rem; margin-bottom:.25rem;">
@@ -1288,57 +1193,42 @@
                 </div>
             </div>
 
-            <!-- Marco por encima (no bloquea eventos) -->
-             <img id="frame"
-                src="http://localhost/PROYECTOS/Belleza/public/img/tocador.png"
-                alt="Marco">
+            <img id="frame" src="https://localhost/PROYECTOS/Belleza/public/img/tocador.png" alt="Marco">
         </div>
 
-        <!-- ============ /ESCENARIO ============ -->
 
         <script>
             (function () {
-
-                // —— Aviso inicial ↔ preguntas
                 document.addEventListener('DOMContentLoaded', () => {
-                    // ---- Cache de nodos (ids deben coincidir con tu HTML) ----
                     const warnOverlay = document.getElementById('warnOverlay');
                     const btnWarnBack = document.getElementById('btnWarnBack');
                     const btnWarnContinue = document.getElementById('btnWarnContinue');
                     const warnDontShowEl = document.getElementById('warnDontShow');
                     const qFlyPanel = document.getElementById('qFly'); // tu panel de preguntas
-
-                    // Si no existe el modal, no seguimos (evita TypeError)
                     if (!warnOverlay) return;
 
-                    // ---- Mostrar/Ocultar según preferencia guardada ----
                     try {
                         const ok = localStorage.getItem('mirrorConsent');
                         if (ok === 'yes') warnOverlay.classList.add('hidden');
                     } catch (_) {
-                        // si el navegador bloquea storage de terceros, seguimos sin guardar preferencia
                     }
 
-                    // ---- Botón “Anterior” ----
                     if (btnWarnBack) {
                         btnWarnBack.addEventListener('click', () => {
-                            // Ajusta la ruta a tu “Salón de Espejos”
                             window.location.href = "{{ route('entrevistas.index') }}";
                         });
                     }
 
-                    // ---- Botón “Continuar” ----
                     if (btnWarnContinue) {
                         btnWarnContinue.addEventListener('click', () => {
                             if (warnDontShowEl?.checked) {
                                 try { localStorage.setItem('mirrorConsent', 'yes'); } catch { }
                             }
                             warnOverlay.classList.add('hidden');
-                            qFlyPanel?.classList.remove('hidden'); // muestra la tarjeta/preguntas si la tenías oculta
+                            qFlyPanel?.classList.remove('hidden');
                         });
                     }
                 });
-                // —— Refs
                 const file = document.getElementById('file');
                 const color = document.getElementById('color');
                 const size = document.getElementById('size');
@@ -1355,16 +1245,11 @@
                 const ctx = cv.getContext('2d', { willReadFrequently: true });
                 const frame = document.getElementById('frame');
 
-                // --- Modal de advertencia bloqueante ---
-
-
-                // —— Estado
                 let brushColor = color.value;
                 let brushSize = parseInt(size.value, 10);
-                let mode = 'draw';                // 'draw' | 'erase'
-                let brush = 'lipstick';           // 'lipstick' | 'shadow' | 'blush' | 'eyeliner' | 'remover'
+                let mode = 'draw';
+                let brush = 'lipstick';
                 let bgLoaded = false;
-
                 let drawing = false, lastX = 0, lastY = 0, lastStampX = 0, lastStampY = 0, stampSpacing = 0.35;
                 let history = [], redoStack = [], historyLimit = 50;
 
@@ -1386,7 +1271,6 @@
                     else cv.style.cursor = 'crosshair';
                 }
 
-                // —— Util
                 function withAlpha(hex, a = 1) {
                     if (!hex) return `rgba(0,0,0,${a})`;
                     if (hex.startsWith('#')) {
@@ -1402,7 +1286,6 @@
                     const glass = document.getElementById('glass');
                     if (!glass) return;
 
-                    // -------------- 1) La selfie manda la proporción --------------
                     const hasSelfie = bg.naturalWidth > 0 && bg.naturalHeight > 0;
 
                     const baseW = hasSelfie
@@ -1415,7 +1298,6 @@
 
                     const aspect = baseW / baseH;
 
-                    // -------------- 2) Límites por pantalla --------------
                     const headerH =
                         (document.querySelector('.bar')?.getBoundingClientRect().height || 0) +
                         (document.querySelector('.subbar')?.getBoundingClientRect().height || 0);
@@ -1426,8 +1308,6 @@
                     const boxRect = stage.parentElement.getBoundingClientRect();
                     const maxW = Math.max(240, Math.min(maxW_vp, boxRect.width));
                     const maxH = Math.max(240, Math.min(maxH_vp, 2000));
-
-                    // -------------- 3) Tamaño final del stage --------------
                     let dispW = maxW;
                     let dispH = Math.round(dispW / aspect);
 
@@ -1439,7 +1319,6 @@
                     stage.style.width = dispW + 'px';
                     stage.style.height = dispH + 'px';
 
-                    // -------------- 4) Fondo y marco ocupan el stage --------------
                     bg.style.position = 'absolute';
                     bg.style.inset = '0';
                     bg.style.width = '100%';
@@ -1455,7 +1334,6 @@
                     frame.style.zIndex = '15';
                     frame.style.pointerEvents = 'none';
 
-                    // -------------- 5) Hueco interior del PNG --------------
                     const FRAME_W = 723;
                     const FRAME_H = 723;
 
@@ -1478,22 +1356,16 @@
                     glass.style.width = glassW + "px";
                     glass.style.height = glassH + "px";
 
-                    // -------------- 7) Canvas dentro del hueco interior --------------
                     cv.style.left = "0px";
                     cv.style.top = "0px";
                     cv.style.width = "100%";
                     cv.style.height = "100%";
 
-
-                    // la resolución interna del canvas debe basarse en el tamaño del GLASS,
-                    // no del stage completo
                     cv.width = Math.round(glassW * dpr);
                     cv.height = Math.round(glassH * dpr);
                     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
                 }
 
-
-                // —— Historial
                 function pushHistory() {
                     try {
                         const snap = ctx.getImageData(0, 0, cv.width, cv.height);
@@ -1521,7 +1393,6 @@
                     redoBtn.disabled = redoStack.length === 0;
                 }
 
-                // —— Dibujo
                 function eventXY(e) {
                     const rect = cv.getBoundingClientRect();
                     const t = e.touches?.[0];
@@ -1570,8 +1441,6 @@
                     if (brush === 'eyeliner' || brush === 'lipstick') {
                         ctx.lineTo(x, y); ctx.stroke(); lastX = x; lastY = y; return;
                     }
-
-                    // stamps (shadow, blush, remover)
                     const dist = Math.hypot(x - lastStampX, y - lastStampY);
                     const step = brushSize * stampSpacing;
                     if (dist >= step) {
@@ -1592,7 +1461,6 @@
                 }
 
                 function stamp(x, y) {
-                    // shadow & blush: usar bordes del mismo color con alfa 0, y mezcla 'lighter'
                     if (brush === 'shadow') {
                         const r = brushSize * 0.6;
                         const g = ctx.createRadialGradient(x, y, 0, x, y, r);
@@ -1626,7 +1494,6 @@
                     }
                 }
 
-                // —— Acciones
                 file.addEventListener('change', (e) => {
                     const f = e.target.files?.[0]; if (!f) return;
                     const reader = new FileReader();
@@ -1666,17 +1533,14 @@
                     ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height); ctx.restore();
                     pushHistory(); redoStack = [];
                 });
-                // --- Listeners robustos sólo en el CANVAS ---
                 cv.addEventListener('pointerdown', (e) => {
-                    cv.setPointerCapture(e.pointerId); // asegura el drag aunque el puntero salga
+                    cv.setPointerCapture(e.pointerId);
                     pointerDown(e);
                 });
                 cv.addEventListener('pointermove', pointerMove);
                 cv.addEventListener('pointerup', pointerUp);
                 cv.addEventListener('pointercancel', pointerUp);
 
-
-                // —— Atajos
                 window.addEventListener('keydown', (e) => {
                     const k = e.key.toLowerCase();
                     if ((e.ctrlKey || e.metaKey) && k === 'z') { e.preventDefault(); return undo(); }
@@ -1687,10 +1551,8 @@
 
                 window.addEventListener('resize', () => { resize(); });
 
-                // —— Init
                 resize(); updateCursor(); pushHistory();
 
-                // --- Preguntas "quemadas"
                 const Q = [
                     "Si pudieras modificar cualquier cosa de tu rostro sin dolor o secuelas, ¿qué cambiarías? Señala en la imagen o escribe. CONTINUAR",
                     "Ahora puedes cambiar cosas, pero tienes que hacerte un procedimiento radical. ¿Qué cosas intervendrías con cirugías? Señala en la imagen o escribe. CONTINUAR",
@@ -1703,7 +1565,6 @@
                 const qInput = document.getElementById('qInput');
                 const qDownload = document.getElementById('qDownload');
 
-                // Respuestas por índice de pregunta
                 const answers = new Array(Q.length).fill('');
 
                 const qFly = document.getElementById('qFly');
@@ -1754,51 +1615,46 @@
                     clearTimeout(hideTimer);
                     hideTimer = setTimeout(() => {
                         if (!overStage && !overCard && !isAnimating) hideQ();
-                    }, 130); // pequeño debounce para cruzar el gap
+                    }, 130);
                 }
 
-                // --- Hover combinado (lienzo + tarjeta) ---
                 stage.addEventListener('mouseenter', () => { overStage = true; if (!isAnimating) showQ(); });
                 stage.addEventListener('mouseleave', (e) => {
                     overStage = false;
-                    if (qFly.contains(e.relatedTarget)) return; // estás yendo a la tarjeta
+                    if (qFly.contains(e.relatedTarget)) return;
                     scheduleHide();
                 });
 
-                qFly.addEventListener('mouseenter', () => { overCard = true; /* mantener visible */ });
+                qFly.addEventListener('mouseenter', () => { overCard = true; });
                 qFly.addEventListener('mouseleave', (e) => {
                     overCard = false;
-                    if (stage.contains(e.relatedTarget)) return; // volviste al lienzo
+                    if (stage.contains(e.relatedTarget)) return;
                     scheduleHide();
                 });
 
                 function downloadCurrentQA() {
-                    // Fuente de verdad: lo que está actualmente en el textarea
+
                     const question = Q[qIdx] || '';
                     const answer = (qInput.value || '').trim();
 
-                    // (opcional pero útil) guarda en memoria por si luego vuelves a esta pregunta
                     answers[qIdx] = answer;
 
-                    // ——— lienzo offscreen con soporte HiDPI y auto alto ———
-                    const CSS_W = 680;       // ancho en px “CSS”
-                    const PAD = 24;        // padding
+                    const CSS_W = 680;
+                    const PAD = 24;
                     const DPR = Math.max(1, Math.round(window.devicePixelRatio || 1));
-
-                    // primero medimos para calcular alto dinámico
                     const m = document.createElement('canvas').getContext('2d');
                     m.font = '600 18px system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif';
                     const qLines = wrapText(m, question, CSS_W - PAD * 2);
                     m.font = '400 16px system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif';
                     const aLines = (answer ? wrapText(m, answer, CSS_W - PAD * 2) : ['(sin respuesta)']);
 
-                    const LH_Q = 24;  // line-height pregunta
-                    const LH_A = 22;  // line-height respuesta
-                    const TITLE_H = 14;   // alto del “Pregunta” (texto)
-                    const GUTTER1 = 10;   // espacio entre título y pregunta
-                    const GUTTER2 = 10;   // espacio entre pregunta y “Tu respuesta”
-                    const LABEL_H = 14;   // alto de la etiqueta “Tu respuesta”
-                    const GUTTER3 = 8;    // espacio entre etiqueta y respuesta
+                    const LH_Q = 24;
+                    const LH_A = 22;
+                    const TITLE_H = 14;
+                    const GUTTER1 = 10;
+                    const GUTTER2 = 10;
+                    const LABEL_H = 14;
+                    const GUTTER3 = 8;
 
                     const CSS_H = PAD + TITLE_H + GUTTER1 +
                         qLines.length * LH_Q +
@@ -1806,59 +1662,48 @@
                         aLines.length * LH_A +
                         PAD;
 
-                    // canvas real (escalado por DPR para que no se vea borroso)
                     const c = document.createElement('canvas');
                     c.width = Math.round(CSS_W * DPR);
                     c.height = Math.round(CSS_H * DPR);
                     const ctx = c.getContext('2d');
                     ctx.scale(DPR, DPR);
 
-                    // ——— tarjeta ———
                     roundRect(ctx, 0, 0, CSS_W, CSS_H, 16);
-                    // sombra suave
                     ctx.save();
                     ctx.shadowColor = 'rgba(2,6,23,0.06)';
                     ctx.shadowBlur = 18;
                     ctx.shadowOffsetY = 6;
                     ctx.fillStyle = '#34113F';
-                    //ctx.fill();
                     ctx.restore();
-                    // borde
                     ctx.strokeStyle = '#e2e8f0';
                     ctx.lineWidth = 1;
                     ctx.stroke();
 
-                    // título
                     ctx.fillStyle = '#0f172a';
                     ctx.font = '700 14px system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif';
                     ctx.fillText('', PAD, PAD + TITLE_H);
 
-                    // pregunta
                     ctx.font = '600 18px system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif';
                     let y = PAD + TITLE_H + GUTTER1;
                     qLines.forEach(line => { ctx.fillText(line, PAD, y); y += LH_Q; });
 
-                    // etiqueta
-                    y += 2; // pequeño respiro
+                    y += 2;
                     ctx.fillStyle = '#64748b';
                     ctx.font = '500 13px system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif';
                     ctx.fillText('Tu respuesta', PAD, y);
                     y += LABEL_H + GUTTER3;
 
-                    // respuesta
                     ctx.fillStyle = '#0f172a';
                     ctx.font = '400 16px system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif';
                     aLines.forEach(line => { ctx.fillText(line, PAD, y); y += LH_A; });
 
-                    // ——— descarga con nombre corto ———
                     const idxStr = String(qIdx + 1).padStart(2, '0');
-                    const short = shortSlug(question, 18); // 18 chars máx
+                    const short = shortSlug(question, 18);
                     const aTag = document.createElement('a');
                     aTag.download = `Q${idxStr}-${short || 'pregunta'}.png`;
                     aTag.href = c.toDataURL('image/png');
                     aTag.click();
 
-                    // helpers
                     function roundRect(ctx, x, y, w, h, r) {
                         ctx.beginPath();
                         ctx.moveTo(x + r, y);
@@ -1885,7 +1730,6 @@
                         return lines;
                     }
                     function shortSlug(s, max = 18) {
-                        // quita símbolos raros, espacios → guiones, recorta
                         const base = String(s || '').toLowerCase()
                             .replace(/[^\p{L}\p{N}\s]/gu, '')
                             .trim()
@@ -1904,7 +1748,6 @@
                     const glass = document.getElementById('glass');
                     if (!glass) return;
 
-                    // 1) La selfie manda la proporción
                     const hasSelfie = bg.naturalWidth > 0 && bg.naturalHeight > 0;
 
                     const baseW = hasSelfie
@@ -1917,7 +1760,6 @@
 
                     const aspect = baseW / baseH;
 
-                    // 2) Límites por pantalla
                     const headerH =
                         (document.querySelector('.bar')?.getBoundingClientRect().height || 0) +
                         (document.querySelector('.subbar')?.getBoundingClientRect().height || 0);
@@ -1929,7 +1771,6 @@
                     const maxW = Math.max(320, Math.min(maxW_vp, boxRect.width));
                     const maxH = Math.max(240, Math.min(maxH_vp, 2000));
 
-                    // 3) Tamaño final del stage
                     let dispW = maxW;
                     let dispH = Math.round(dispW / aspect);
 
@@ -1941,7 +1782,6 @@
                     stage.style.width = dispW + 'px';
                     stage.style.height = dispH + 'px';
 
-                    // 5) Hueco interior REAL del PNG
                     const FRAME_W = 1100;
                     const FRAME_H = 410;
 
@@ -1958,7 +1798,6 @@
                     const glassW = (FRAME_W - M_LEFT - M_RIGHT) * sX;
                     const glassH = (FRAME_H - M_TOP - M_BOTTOM) * sY;
 
-                    // 6) Aplicar hueco interior al glass
                     glass.style.position = "absolute";
                     glass.style.left = glassX + "px";
                     glass.style.top = glassY + "px";
@@ -1966,36 +1805,30 @@
                     glass.style.height = glassH + "px";
 
 
-                    // -------------- 4) Fondo: se ajusta AL HUECO del marco --------------
                     bg.style.position = 'absolute';
                     bg.style.left = glassX + 'px';
                     bg.style.top = glassY + 'px';
                     bg.style.width = glassW + 'px';
                     bg.style.height = glassH + 'px';
-                    bg.style.objectFit = 'contain';        // la selfie cabe completa
-                    bg.style.objectPosition = 'center center';  // centrada en el hueco
+                    bg.style.objectFit = 'contain';
+                    bg.style.objectPosition = 'center center';
                     bg.style.zIndex = '1';
                     bg.style.boxSizing = 'border-box';
-                    bg.style.padding = '0 24px';   // ← ajusta este valor
+                    bg.style.padding = '0 24px';
 
-
-                    // ----- 4) MARCO: MARCO ADAPTADO AL HUECO EXACTO -----
                     frame.style.position = 'absolute';
                     frame.style.inset = '0';
                     frame.style.width = '100%';
                     frame.style.height = '100%';
-                    frame.style.objectFit = 'contain';   //fill  o 'contain' si prefieres
+                    frame.style.objectFit = 'contain';
                     frame.style.zIndex = '15';
                     frame.style.pointerEvents = 'none';
 
-
-                    // -------------- 5) Canvas dentro del hueco interior --------------
                     cv.style.left = "0px";
                     cv.style.top = "0px";
                     cv.style.width = "100%";
                     cv.style.height = "100%";
 
-                    // Resolución interna: IGUAL al tamaño del glass
                     const gRect = glass.getBoundingClientRect();
 
                     cv.width = Math.round(gRect.width * dpr);
@@ -2012,8 +1845,6 @@
                     const r = stage.getBoundingClientRect();
                     const vw = window.innerWidth;
                     const vh = window.innerHeight;
-
-                    // Queremos que quepa en pantalla, pero con el MISMO aspecto del stage
                     const scale = Math.min((vw * 0.9) / r.width, (vh * 0.9) / r.height);
 
                     const w = r.width * scale;
@@ -2035,8 +1866,6 @@
                 window.addEventListener('resize', syncModalFrameToStage);
 
 
-                // --- Siguiente: salida -> cambio texto -> entrada (sin ocultar por hover) ---
-
                 function nextQuestion() {
                     clearTimeout(hideTimer);
                     overCard = true;
@@ -2046,7 +1875,6 @@
                     isAnimating = true;
                     qNext.disabled = true;
 
-                    // animación de salida (la que ya usas)
                     qFly.animate(
                         [
                             { transform: 'translateX(0) scale(1)', opacity: 1, filter: 'blur(0)' },
@@ -2054,26 +1882,17 @@
                         ],
                         { duration: 240, easing: EASE_OUT, fill: 'forwards' }
                     ).onfinish = () => {
-                        // si esta era la última, no avances; muestra conclusión
                         if (isLast()) {
                             showFinalModal();
-                            // opcional: mantén visible la tarjeta o escóndela
-                            // hideQ();
                             isAnimating = false;
                             qNext.disabled = false;
                             return;
                         }
 
-                        // avanzar índice y renderizar la siguiente
                         qIdx = Math.min(qIdx + 1, Q.length - 1);
                         qText.textContent = cleanQ(Q[qIdx]);
-                        // Guarda la respuesta actual antes de avanzar
                         answers[qIdx - 1] = (qInput.value || '').trim();
-
-                        // Limpia o restaura según corresponda
                         qInput.value = answers[qIdx] || '';
-
-                        // animación de entrada
                         qFly.animate(
                             [
                                 { transform: 'translateX(100px) scale(.92)', opacity: 0, filter: 'blur(4px)' },
@@ -2083,9 +1902,6 @@
                         ).onfinish = () => {
                             isAnimating = false;
                             qNext.disabled = false;
-
-                            // Si ahora estamos en la última, puedes cambiar el texto del botón:
-                            // qNext.textContent = 'Finalizar';
                         };
                     };
                 }
@@ -2096,7 +1912,6 @@
                     nextQuestion();
                 });
 
-                // texto inicial por si las moscas
                 qText.textContent = Q[qIdx];
 
                 document.addEventListener('DOMContentLoaded', () => {
@@ -2106,29 +1921,23 @@
                     const warnDontShowEl = document.getElementById('warnDontShow');
                     const qFlyPanel = document.getElementById('qFly');
 
-                    // Si no existe el overlay, salimos sin romper nada
                     if (!warnOverlay) return;
 
-                    // Mostrar/ocultar según preferencia guardada
                     try {
                         const ok = localStorage.getItem('mirrorConsent');
                         if (ok === 'yes') {
                             warnOverlay.classList.add('hidden');
-                            // Si tu lógica quiere mostrar el panel al cargar, quita hidden:
                             qFlyPanel?.classList.remove('hidden');
                         }
                     } catch (e) {
-                        // ignorar si storage está bloqueado
                     }
 
-                    // Botón “Anterior” → vuelve al "Salón de Espejos"
                     if (btnWarnBack) {
                         btnWarnBack.addEventListener('click', () => {
                             window.location.href = "{{ route('entrevistas.index') }}";
                         });
                     }
 
-                    // Botón “Continuar” → oculta modal y muestra preguntas
                     if (btnWarnContinue) {
                         btnWarnContinue.addEventListener('click', () => {
                             if (warnDontShowEl?.checked) {
@@ -2139,8 +1948,6 @@
                         });
                     }
                 });
-
-                //==== REFLEXION  FINAL POP UP ========
 
                 function showFinalModal() {
                     document.getElementById('finalOverlay').classList.remove('hidden');

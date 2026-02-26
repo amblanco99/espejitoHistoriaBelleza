@@ -11,7 +11,7 @@ class ResumenFiltroApiController extends Controller
     private string $table = 'resumen_centralizado';
     public function index(Request $request)
     {
-    print('888888888888888888888888888888888888');
+
     }
     public function hitos()
     {
@@ -36,7 +36,6 @@ class ResumenFiltroApiController extends Controller
             ->whereNotNull('categoria_2')
             ->distinct()
             ->pluck('categoria_2');
-//dd($rows->toSql(), $rows->getBindings());
         return response()->json($rows);
     }
 
@@ -76,7 +75,6 @@ class ResumenFiltroApiController extends Controller
         return response()->json($rows);
     }
 
-    // Trae filas filtradas por lo elegido (hasta donde llegue la cascada)
     public function buscar(Request $req)
     {
         $q = DB::table($this->table)->select('*');
@@ -88,7 +86,6 @@ class ResumenFiltroApiController extends Controller
         return $q->orderByDesc('categoria_1')->limit(200)->get();
     }
 
-    // Full-text en comentario (opcional, requiere índice TSV)
     public function buscarTexto(Request $req)
     {
         $texto = trim((string)$req->query('q', ''));

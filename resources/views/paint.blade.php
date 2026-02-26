@@ -1169,34 +1169,61 @@
             </div>
         </div>
 
-        <div id="stage" class="stage" style="flex:1 1 auto; min-width:0; position:relative; overflow:hidden;">
-
-            <img id="bg" alt="" style="position:absolute; inset:0; width:100%; height:100%;
-                    object-fit:contain; z-index:5; user-select:none; -webkit-user-drag:none;">
-            <div id="glass" class="glass" style="
-        position:absolute;
-        top:14.5%;
-        left:9%;
-        right:10%;
-        bottom:14%;
-        overflow:hidden;
-     ">
-                <canvas id="cv" style="position:absolute; inset:0; width:100%; height:100%;
-                                z-index:10; pointer-events:auto; touch-action:none; display:block;"></canvas>
-                <div id="placeholder" class="glass-placeholder">
-                    <div style="text-align:left; width:100%; max-width:300px;">
-                        <div style="font-size:1.1rem; margin-bottom:.25rem;">
-                            Cargar una imagen para empezar
-                        </div>
-                        <div>o dibuja sobre un lienzo en blanco</div>
-                    </div>
+        <div
+        id="stage"
+        class="stage"
+        style="flex: 1 1 auto; min-width: 0; position: relative; overflow: hidden"
+        >
+        <img
+            id="bg"
+            alt=""
+            style="
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            z-index: 5;
+            user-select: none;
+            -webkit-user-drag: none;
+            "
+        />
+        <div
+            id="glass"
+            class="glass"
+            style="
+            position: absolute;
+            top: 14.5%;
+            left: 9%;
+            right: 10%;
+            bottom: 14%;
+            overflow: hidden;
+            "
+        >
+            <canvas
+            id="cv"
+            style="
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10;
+                pointer-events: auto;
+                touch-action: none;
+                display: block;
+            "
+            ></canvas>
+            <div id="placeholder" class="glass-placeholder">
+            <div style="text-align: left; width: 100%; max-width: 300px">
+                <div style="font-size: 1.1rem; margin-bottom: 0.25rem">
+                Cargar una imagen para empezar
                 </div>
+                <div>o dibuja sobre un lienzo en blanco</div>
             </div>
-
-            <img id="frame" src="https://localhost/PROYECTOS/Belleza/public/img/tocador.png" alt="Marco">
+            </div>
         </div>
-
-
+        <img id="frame" src="tocador.png" alt="Marco" />
+        </div>
         <script>
             (function () {
                 document.addEventListener('DOMContentLoaded', () => {

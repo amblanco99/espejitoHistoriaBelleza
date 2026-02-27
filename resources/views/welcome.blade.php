@@ -238,6 +238,8 @@
                     </p>
                 </div>
 
+
+
                 <div class="max-w-5xl mx-auto px-8 text-center mt-20 mb-16">
                     <p class="italic text-xl md:text-3xl lg:text-4xl leading-snug reveal-scroll-delay-2">
                         Los actos para retomar su título<br>

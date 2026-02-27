@@ -1011,6 +1011,8 @@
                     <br><br>
                     Si no te sientes en la condición de hablar sobre estos temas, te recomiendo que saltes esta sección.
                     <br><br>
+                    <strong>La información que escribas aquí no será almacenada, ni recolectada. </strong>
+                    <br><br>
                     Presione <strong>Tocador</strong> para ver las preguntas o
                     <strong>Salón de espejos</strong> para regresar.
                 </p>
